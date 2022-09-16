@@ -1,8 +1,9 @@
 const cards =  document.getElementsByClassName('card-inner')
-
+const title =  document.getElementById('title')
 const logos=['python','java','c']
-const logoCards={}
-var memory=[]
+hidden=0
+memory=[]
+
 
 for (let card of cards){
     card.addEventListener('click', ()=>{
@@ -17,11 +18,14 @@ for (let card of cards){
             }
         }
         else {
-            console.log(memory[0].classList)
-            console.log(memory[1].classList)
             if (memory[0].classList.value==memory[1].classList.value){
                 memory[0].classList.add('hide')
                 memory[1].classList.add('hide')
+                hidden+=2
+                if (hidden==6){
+                    title.textContent='Congratulations, you won!'
+                    title.style.color='green'
+                }
             }
             else{
                 memory[0].classList.toggle('rotate')
@@ -29,6 +33,7 @@ for (let card of cards){
             }
             memory=[]
         } 
+        
     })  
 }
 
