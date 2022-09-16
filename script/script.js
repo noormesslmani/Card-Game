@@ -1,9 +1,21 @@
 const cards =  document.getElementsByClassName('card-inner')
 const title =  document.getElementById('title')
+const restart = document.getElementById('restart')
 const logos=['python','java','c']
-hidden=0 //keep track of hidden cards
-memory=[] //keep track of flipped cards
+let hidden=0 //keep track of hidden cards
+let memory=[] //keep track of flipped cards
 
+//reset the game
+restart.onclick=()=>{
+    for (let card of cards){
+        card.classList.remove('rotate')
+        card.style.display.block
+        hidden=0
+        memory=[]
+        title.textContent='Click on the Cards, and find the matching ones!'
+        title.style.color='grey'
+    }
+}
 
 for (let card of cards){
     card.addEventListener('click', ()=>{
