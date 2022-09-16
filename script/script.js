@@ -1,19 +1,21 @@
 const cards =  document.getElementsByClassName('card-inner')
 const title =  document.getElementById('title')
 const restart = document.getElementById('restart')
+const score = document.getElementById('score')
 const logos=['python','java','c']
+let result=0
 let hidden=0 //keep track of hidden cards
 let memory=[] //keep track of flipped cards
 
 //reset the game
 restart.onclick=()=>{
+    hidden=0
+    memory=[]
+    title.textContent='Click on the Cards, and find the matching ones!'
+    title.style.color='grey'
     for (let card of cards){
+        card.classList.remove('hide')
         card.classList.remove('rotate')
-        card.style.display.block
-        hidden=0
-        memory=[]
-        title.textContent='Click on the Cards, and find the matching ones!'
-        title.style.color='grey'
     }
 }
 
@@ -42,6 +44,9 @@ for (let card of cards){
                 if (hidden==6){
                     title.textContent='Congratulations, you won!'
                     title.style.color='green'
+                    result+=1
+                    score.textContent= `your score is: ${result}`
+                    score.style.color='green'
                 }
             }
             //if classes dont match flip them again and reset the memory
@@ -54,4 +59,5 @@ for (let card of cards){
         
     })  
 }
+
 
